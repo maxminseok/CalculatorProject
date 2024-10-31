@@ -6,6 +6,9 @@
 //
 
 public class AddOperation: AbstractOperation { // 프로토콜을 따르도록 : AbstractOperation 구문 추가
+    
+    public init() {}
+    
     public func calculate(_ firstNumber: Double, _ secondNumber: Double) -> Double {
         return firstNumber + secondNumber
     }

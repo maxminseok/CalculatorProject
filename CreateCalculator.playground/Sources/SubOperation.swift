@@ -6,6 +6,9 @@
 //
 
 public class SubOperation: AbstractOperation {
+    
+    public init() {}
+    
     public func calculate(_ firstNumber: Double, _ secondNumber: Double) -> Double {
         return firstNumber - secondNumber
     }
