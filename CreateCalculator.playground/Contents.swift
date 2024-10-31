@@ -113,9 +113,9 @@ print("\(first) % \(second) = \(calculator.remOperation.calculate(first, second)
 //Lv4 추상화 된 AbsrtractOperation 프로토콜 만들기
 protocol AbstractOperation {
     func calculate(_ firstNumber: Double, _ secondNumber: Double) -> Double
-}
+} // 추상화를 통해 공통된 인터페이스(calculate)를 정의
 
-class AddOperation: AbstractOperation {
+class AddOperation: AbstractOperation { // 프로토콜을 따르도록 : AbstractOperation 구문 추가
     func calculate(_ firstNumber: Double, _ secondNumber: Double) -> Double {
         return firstNumber + secondNumber
     }
@@ -147,14 +147,14 @@ class RemOperation: AbstractOperation {
 }
 
 class Calculator {
-    var operation: AbstractOperation
+    var operation: AbstractOperation // 프로토콜을 따르는 인스턴스 생성, 모든 연산에 대한 인스턴스를 생성할 필요 없음
     
-    init(parameterOperatin: AbstractOperation) {
-        self.operation = parameterOperatin
+    init(parameterOperatin: AbstractOperation) { // 그때 그때 필요한 연산의 인스턴스를 파라미터로 전달 받음
+        self.operation = parameterOperatin // 전달받은 인스턴스로 초기화
     }
     
-    func performCalculate(_ firstNumber: Double, _ secondNumber: Double) -> Double {
-        return operation.calculate(firstNumber, secondNumber)
+    func performCalculate(_ firstNumber: Double, _ secondNumber: Double) -> Double { // operation 객체에 따라 구체적인 연산을 대신해서 호출하는 메서드
+        return operation.calculate(firstNumber, secondNumber) // 연산 수행 후 결과값 반환
     }
 }
 
@@ -162,10 +162,9 @@ class Calculator {
 let firstNumber: Double = 12
 let secondNumber: Double = 5
 
-let definedOperation: [AbstractOperation] = [AddOperation(), SubOperation(), MulOperataion(), DivOperation(), RemOperation()]
+let definedOperation: [AbstractOperation] = [AddOperation(), SubOperation(), MulOperataion(), DivOperation(), RemOperation()] // 파라미터로 전달하기 위한 인스턴스 배열
 
-for currentOperation in definedOperation {
+for currentOperation in definedOperation { // 반복문을 통해 각 연산의 인스턴스를 파라미터로 전달하고 출력할 값 반환 받기
     let calculate = Calculator(parameterOperatin: currentOperation)
     print(calculate.performCalculate(firstNumber, secondNumber))
 }
-가
